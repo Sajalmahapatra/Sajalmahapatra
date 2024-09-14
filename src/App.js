@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  Button,
+  Group,
+  useComputedColorScheme,
+  useMantineColorScheme,
+  useMantineTheme,
+} from "@mantine/core";
 
 function App() {
+  const { setColorScheme, toggleColorScheme } = useMantineColorScheme({
+    keepTransitions: true,
+  });
+  const computedColorScheme = useComputedColorScheme("light");
+
+
+  const theme = useMantineTheme();
+  console.log("🚀 ~ App ~ theme:", theme);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Group position="center" mt="xl">
+      <Button onClick={toggleColorScheme}>
+        Switch to {computedColorScheme === "dark" ? "Light" : "Dark"} Mode
+      </Button>
+    </Group>
   );
 }
 
